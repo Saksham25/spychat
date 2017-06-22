@@ -113,8 +113,8 @@ def send_message():
                 friends[friend_choice].chats.append(new_chat)
 
                 print "Your secret message image is ready!"
-            elif len(text) > 150:
-                print "invalid message"
+            elif len(text) > 100:
+                print "you are speaking too much message wont be sent\n"
 
             else:
                 print "please ENTER A MESSAGE"
