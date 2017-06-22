@@ -1,4 +1,4 @@
-
+from termcolor import colored
 from spy_details import spy, Spy, ChatMessage, friends
 from steganography.steganography import Steganography
 from datetime import datetime
@@ -9,7 +9,7 @@ STATUS_MESSAGES = ['New user', 'Available.', 'Busy']
 print "**WELCOME TO SPY CHAT!**"
 
 
-
+#method to add status in spy chat
 def add_status():
 
     updated_status_message = None
@@ -22,7 +22,7 @@ def add_status():
 
     default = raw_input("Do you want to select from the older status (y/n)? ")
 
-    if default.upper() == "N":
+    if default.upper() == "N":   #to set new status
         new_status_message = raw_input("What status message do you want to set? ")
 
 
@@ -30,7 +30,7 @@ def add_status():
             STATUS_MESSAGES.append(new_status_message)
             updated_status_message = new_status_message
 
-    elif default.upper() == 'Y':
+    elif default.upper() == 'Y':#to upload from previous status
 
         item_position = 1
 
@@ -54,7 +54,7 @@ def add_status():
 
     return updated_status_message
 
-
+# to add a new friend
 def add_friend():
 
     new_friend = Spy('','',0,0.0)
@@ -79,7 +79,7 @@ def add_friend():
 
     return len(friends)
 
-
+#to select a friend from list of friends
 def select_a_friend():
     item_number = 0
 
@@ -97,7 +97,7 @@ def select_a_friend():
 
 
 def send_message():
-        if len(friends)==0:
+        if len(friends)==0: #check if friends are there in friends list
             add_friend()
             send_message()
         else:
@@ -120,9 +120,9 @@ def send_message():
                 print "please ENTER A MESSAGE"
 
 
-
+# method to read a message from list
 def read_message():
-    if len(friends) == 0:
+    if len(friends) == 0: #check if there are friends
         print "No friends and messages!"
 
     else:
@@ -138,29 +138,30 @@ def read_message():
 
         print "Your secret message has been saved!"
 
-
+#method to read chats from chats in friends
 def read_chat_history():
-    if len(friends) == 0:
+    if len(friends) == 0: #check if there are existing friends or not
         print "No friends and messages!"
 
     else:
         read_for = select_a_friend()
 
-        print '\n6'
+        print '\n'
 
         for chat in friends[read_for].chats:
              if chat.sent_by_me:
-                print '[%s] %s: %s' % (chat.time.strftime("%d %B %Y"), 'You said:', chat.message)
+                print colored ("[%s]" , "blue") %(chat.time.strftime("%d,%B,%Y")), colored("you said ", "red")
+                print chat.message
              else:
-                print '[%s] %s said: %s' % (chat.time.strftime("%d %B %Y"), friends[read_for].name, chat.message)
+                print '(%s) [%s] %s said: %s' % (chat.time.strftime("%d %B %Y"), friends[read_for].name, chat.message)
 
-
+# method to start spychat
 def start_chat(spy):
 
     spy.name = spy.salutation + " " + spy.name
 
 
-    if spy.age > 12 and spy.age < 50:
+    if spy.age > 12 and spy.age < 50: #check age of spy
 
 
         print "Authentication complete. Welcome " + spy.name + " age: " \
@@ -174,7 +175,7 @@ def start_chat(spy):
 
             if len(menu_choice) > 0:
                 menu_choice = int(menu_choice)
-
+               # choose from menu
                 if menu_choice == 1:
                     spy.current_status_message = add_status()
                 elif menu_choice == 2:
@@ -191,4 +192,4 @@ def start_chat(spy):
     else:
         print "Sorry you are NOT of the CORRECT AGE to be a spy"
 
-start_chat(spy)
+start_chat(spy) #caling method spy _chat
