@@ -19,11 +19,24 @@ class ChatMessage:
         self.time = datetime.now()
         self.sent_by_me = sent_by_me
 
-spy = Spy()
 
-#friend_one = Spy('akshit', 'Mr.', 5.5, 21)
-#friend_two = Spy('arpit', 'Ms.', 4.4, 21)
-#friend_three = Spy('Mohit', 'Mr.', 4.95, 20)
 
+spy = Spy
+
+spy.name = raw_input("Welcome to spy chat, you must tell me your spy name first: ")
+
+if len(spy.name) > 0:
+    spy.salutation = raw_input("Should I call you Mr. or Ms.?: ")
+
+    spy.age = raw_input("What is your age?")
+    spy.age = int(spy.age)
+
+    spy.rating = raw_input("What is your spy rating?")
+    spy.rating = float(spy.rating)
+
+
+else:
+
+    print 'Please add a valid spy name'
 
 friends = []
