@@ -1,5 +1,5 @@
 from termcolor import colored
-from spy_details import spy, Spy, ChatMessage, friends
+from spy_details import Spy,spy, ChatMessage, friends
 from steganography.steganography import Steganography
 from datetime import datetime
 
@@ -12,7 +12,8 @@ print "**WELCOME TO SPY CHAT!**"
 #method to add status in spy chat
 def add_status():
 
-    updated_status_message = None
+    spy.updated_status_message = None
+    spy.current_status_message=None
 
     if spy.current_status_message != None:
 
@@ -22,7 +23,7 @@ def add_status():
 
     default = raw_input("Do you want to select from the older status (y/n)? ")
 
-    if default.upper() == "N":   #to set new status
+    if default.upper() == "N":
         new_status_message = raw_input("What status message do you want to set? ")
 
 
@@ -30,7 +31,7 @@ def add_status():
             STATUS_MESSAGES.append(new_status_message)
             updated_status_message = new_status_message
 
-    elif default.upper() == 'Y':#to upload from previous status
+    elif default.upper() == 'Y':
 
         item_position = 1
 
@@ -155,6 +156,17 @@ def read_chat_history():
              else:
                 print '(%s) [%s] %s said: %s' % (chat.time.strftime("%d %B %Y"), friends[read_for].name, chat.message)
 
+
+#def del_a_friend():
+    #for friend in friends:
+        #item=0
+        #for chat in friends[item].chats:
+            #if len(chat)>=10:
+                #friend[item]=None
+                #print "friend at item deleted"
+        #item=item+1
+
+
 # method to start spychat
 def start_chat(spy):
 
@@ -192,4 +204,5 @@ def start_chat(spy):
     else:
         print "Sorry you are NOT of the CORRECT AGE to be a spy"
 
-start_chat(spy) #caling method spy _chat
+start_chat(spy)
+#caling method spy _chat
